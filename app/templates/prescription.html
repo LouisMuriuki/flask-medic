@@ -1,0 +1,67 @@
+{% extends "index.html" %} {% block title %} Prescription {% endblock %} {%
+block navbar %}
+
+<div class="bg-gray-800 w-full">
+  <div
+    class="container mx-auto flex w-full flex-row items-center justify-between"
+  >
+    <h3 class="text-3xl text-italic font-bold text-blue-500 px-5">MEDIC</h3>
+    <nav class="flex w-[50%] items-center justify-between py-8"></nav>
+    <a
+      href="{{ url_for('logout') }}"
+      class="bg-red-500 text-white border border-red-600 rounded-md px-4 py-2 inline-block transition duration-300 ease-in-out hover:bg-red-600 hover:border-red-700 focus:outline-none focus:ring focus:border-red-700"
+    >
+      Log Out
+    </a>
+  </div>
+</div>
+
+{% endblock %} {% block content %}
+<body class="font-sans bg-gray-100 p-8">
+  <div class="container mx-auto">
+    <h1 class="text-3xl text-center font-bold mb-8">Medicine Information</h1>
+    <h1 class="text-3xl text-center font-bold mb-8">username</h1>
+
+    <!-- Add New Button -->
+    <button
+      class="flex flex-end bg-green-500 text-white px-4 py-2 mb-4 hover:bg-green-600"
+    >
+      <a href="{{ url_for('addPrescription') }}" class="text-white">Add New</a>
+    </button>
+
+    <!-- Medicine Table -->
+    <table class="table-auto w-full">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Medicine Name</th>
+          <th class="px-4 py-2">Instructions</th>
+          <th class="px-4 py-2">Dosage</th>
+          <th class="px-4 py-2">Doctor</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for prescription in prescriptions %}
+        <tr>
+          <td class="border px-4 py-2">{{ prescription.medicine_name }}</td>
+          <td class="border px-4 py-2">{{ prescription.instructions }}</td>
+          <td class="border px-4 py-2">{{ prescription.dosage }}</td>
+          <td class="border px-4 py-2">{{ prescription.doctor }}</td>
+          <td class="border px-4 py-2">
+            <button
+              class="bg-blue-500 text-white px-2 py-1 mr-2 hover:bg-blue-600"
+            >
+              Edit
+            </button>
+            <button class="bg-red-500 text-white px-2 py-1 hover:bg-red-600">
+              Clear
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% endblock %}
+</body>

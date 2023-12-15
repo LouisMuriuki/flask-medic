@@ -1,0 +1,87 @@
+{% extends "index.html" %} {% block title %} Prescription {% endblock %} 
+{%block navbar %}{% endblock %} 
+
+{% block content %}
+<body class="font-sans bg-gray-100 p-8">
+  <div class="container mx-auto">
+    <h1 class="text-center text-3xl font-bold mb-8">Add New Medicine</h1>
+
+    <!-- Medicine Form -->
+    <form
+      method="POST"
+      action="{{ url_for('addPrescription') }}"
+      class="max-w-4xl mx-auto bg-white p-8 rounded shadow-md"
+    >
+      <!-- Medicine Name -->
+      <div class="mb-4">
+        <label
+          for="medicineName"
+          class="text-sm font-medium text-gray-700 block"
+          >Medicine Name</label
+        >
+        <input
+          type="text"
+          id="medicineName"
+          name="medicineName"
+          class="mt-1 p-2 w-full border rounded-md"
+        />
+      </div>
+
+      <!-- Instructions -->
+      <div class="mb-4">
+        <label
+          for="instructions"
+          class="text-sm font-medium text-gray-700 block"
+          >Instructions</label
+        >
+        <textarea
+          id="instructions"
+          name="instructions"
+          rows="3"
+          class="mt-1 p-2 w-full border rounded-md"
+        ></textarea>
+      </div>
+
+      <!-- Dosage -->
+      <div class="mb-4">
+        <label for="dosage" class="text-sm font-medium text-gray-700 block"
+          >Dosage</label
+        >
+        <input
+          type="text"
+          id="dosage"
+          name="dosage"
+          class="mt-1 p-2 w-full border rounded-md"
+        />
+      </div>
+
+      <!-- Doctor Dropdown -->
+      <div class="mb-4">
+        <label for="doctor" class="text-sm font-medium text-gray-700 block"
+          >Doctor</label
+        >
+        <select
+          id="doctor"
+          name="doctor"
+          class="mt-1 p-2 w-full border rounded-md"
+        >
+          <option value="dr-smith">Dr. Smith</option>
+          <option value="dr-jones">Dr. Jones</option>
+          <option value="dr-doe">Dr. Doe</option>
+          <!-- Add more dummy data as needed -->
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex items-center justify-between">
+        <button
+          type="submit"
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Add Medicine
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+{% endblock %}
