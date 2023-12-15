@@ -10,14 +10,40 @@
     />
   </head>
   <body class="font-sans bg-slate-100 text-gray-800">
-    <header class="bg-blue-500 p-2 text-white text-center">
+    <header
+      class="flex items-center justify-center bg-blue-500 p-2 text-white text-center"
+    >
       <div class="flex flex-row items-center justify-center">
         <h4 class="flex px-4">Phone:+41873900322</h4>
         <div class="h-4 border-l border-gray-300"></div>
         <h4 class="flex px-4">Email: medic@health.gmail.com</h4>
         <div class="h-4 border-l border-gray-300"></div>
       </div>
+      <div class="flex items-center justify-end ml-36 gap-8">
+        <img
+          src="{{url_for('static', filename='images/twitter.png')}}"
+          alt="Google Icon"
+          class="mr-2 rounded-full"
+          width="25"
+          height="25"
+        />
+        <img
+          src="{{url_for('static', filename='images/instagram.png')}}"
+          alt="Google Icon"
+          class="mr-2 rounded-full"
+          width="25"
+          height="25"
+        />
+        <img
+          src="{{url_for('static', filename='images/facebook.png')}}"
+          alt="Google Icon"
+          class="mr-2 rounded-full"
+          width="25"
+          height="25"
+        />
+      </div>
     </header>
+
     <div class="w-full">
       {% block navbar %}
 
