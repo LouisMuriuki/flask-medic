@@ -18,17 +18,22 @@ Clone the repository to your local machine:
 2. run "npm i tailwindcss" to install tailwind
 3. run "npx tailwindcss init" to initialize tailwind
 4. Change the content section of the file such that the final tailwind.config.js looks something like this:
+
     content: ["./app/templates/*.html", "./app/static/src/*.js"],
+
 5. Create "input.css" file inside css folder under static folder and add the following:
+
     @tailwind base;
     @tailwind components;
     @tailwind utilities;
 
 6. Create an alias in the package.json inorder to listen to new tailwind changes i.e
+
     "buildcss": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch"
 
 ### 3.install flask packages
-Run "pip install -r requirements.txt"
+
+     Run "pip install -r requirements.txt"
 
 ### 4.setup the Environmental variables
 ### 5.run "env\scripts\activate" to activate your environmental variables
