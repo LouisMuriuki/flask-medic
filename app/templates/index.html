@@ -10,40 +10,6 @@
     />
   </head>
   <body class="font-sans bg-slate-100 text-gray-800">
-    <header
-      class="flex items-center justify-center bg-blue-500 p-2 text-white text-center"
-    >
-      <div class="flex flex-row items-center justify-center">
-        <h4 class="flex px-4">Phone:+41873900322</h4>
-        <div class="h-4 border-l border-gray-300"></div>
-        <h4 class="flex px-4">Email: medic@health.gmail.com</h4>
-        <div class="h-4 border-l border-gray-300"></div>
-      </div>
-      <div class="flex items-center justify-end ml-36 gap-8">
-        <img
-          src="{{url_for('static', filename='images/twitter.png')}}"
-          alt="Google Icon"
-          class="mr-2 rounded-full"
-          width="25"
-          height="25"
-        />
-        <img
-          src="{{url_for('static', filename='images/instagram.png')}}"
-          alt="Google Icon"
-          class="mr-2 rounded-full"
-          width="25"
-          height="25"
-        />
-        <img
-          src="{{url_for('static', filename='images/facebook.png')}}"
-          alt="Google Icon"
-          class="mr-2 rounded-full"
-          width="25"
-          height="25"
-        />
-      </div>
-    </header>
-
     <div class="w-full">
       {% block navbar %}
 
@@ -59,33 +25,55 @@
             <a href="#" class="text-white hover:underline">About</a>
             <a href="#" class="text-white hover:underline">Services</a>
             <a href="#" class="text-white hover:underline">Contact us</a>
-            <a href="#" class="text-white hover:underline">Blogs</a>
           </nav>
           <button
             class="bg-white text-gray-800 border border-gray-300 rounded-md px-5 flex items-center hover:bg-gray-100 focus:outline-none focus:ring focus:border-blue-300"
           >
-            <img
-              {#
-              src="{{url_for('static', filename='images/goggle-icon.jpg')}}"
-              #}
-              alt="Google Icon"
-              class="mr-2"
-              width="20"
-              height="20"
-            />
-            Login with Google
+            <a
+              class="flex flex-row w-max items-center gap-1"
+              href="{{'login'}}"
+            >
+              <img
+                src="{{url_for('static', filename='images/goggle-icon.jpg')}}"
+                alt="Google Icon"
+                class="py-2 px-1"
+                width="20"
+                height="20"
+              />
+              Login with Google</a
+            >
           </button>
         </div>
       </div>
 
-      {% endblock %}
+{% endblock %} {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+  <div class="fixed inset-x-0 bottom-0 z-50 flex justify-center items-end space-x-4 p-4">
+    {% for category, message in messages %}
+      <div class="flex-grow max-w-md bg-white border rounded-md shadow-md px-4 py-2 mb-4 ">
+        <div class="flex justify-between items-center">
+          <div class="font-bold">
+            {{ message }}
+          </div>
+          <button
+           {# onclick="this.parentNode.remove()" #}
+            onclick="this.closest('.fixed').remove()"
+            class="text-lg text-gray-500 hover:text-gray-700 focus:outline-none"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %} {% endwith %}
+
 
       <main class="container mx-auto p-8 h-screen">
         {% block content %}
-        <div class="w-full flex flex">
+        <div class="w-full flex">
           <div class="flex flex-col w-[60%] p-2">
             <p class="font-bold uppercase mt-32 text-lg">
-              ____Welcome to MEDIC
+              ____<span class="text-blue-500">Welcome to MEDIC</span>
             </p>
             <h1 class="font-bold uppercase mt-20 text-4xl text-black">
               BETTER CARE FOR YOUR GENERAL
@@ -93,33 +81,36 @@
             <h1 class="font-bold uppercase mt-4 text-4xl text-blue-500">
               HEALTH
             </h1>
-            <p class="font-bold italic uppercase mt-28">
+            <div class="flex flex-col gap-8 justify-start items-center mt-28">
+              <p class="text-2xl">
+                Login to Medic to view/track your medication
+              </p>
+              <button
+                class="bg-white text-gray-800 border border-gray-300 rounded-md px-5 flex items-center hover:bg-gray-100 focus:outline-none focus:ring focus:border-blue-300"
+              >
+                <a class="flex flex-row w-max items-center" href="{{'login'}}">
+                  <img
+                    src="{{url_for('static', filename='images/goggle-icon.jpg')}}"
+                    alt="Google Icon"
+                    class="mr-2 py-2"
+                    width="40"
+                    height="40"
+                  />
+                  Login with Google</a
+                >
+              </button>
+            </div>
+            <p class="text-lg capitalize mt-28">
               Embracing good health isn't just a choice;<br />
               It's an investment in a vibrant and fulfilling life, where
               well-being becomes the cornerstone of every joy and accomplishment
-              <span class="text-blue-500">~ Dr. Mann</span>
+              <span class="text-blue-500">~Dr woo</span>
             </p>
-            <div class="flex items-center mt-28">
-              <input
-                type="email"
-                id="emailInput"
-                name="email"
-                placeholder="Enter your email to stay up-to date with your health"
-                class="border w-96 border-gray-300 py-4 rounded-l-md focus:outline-none focus:ring focus:border-blue-300"
-              />
-              <button
-                type="button"
-                class="bg-blue-500 uppercase text-white px-4 py-4 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
-                onclick="collectEmail()"
-              >
-                Join our Newsletter
-              </button>
-            </div>
           </div>
-          <div class="flex flex-col w-[40%] p-2">
+          <div class="flex flex-col items-center justify-center w-[40%] p-2">
             <img
               class="mix-blend-multiply"
-              src="{{url_for('static', filename='images/doctor-background.jpg')}}"
+              src="{{url_for('static', filename='images/prescriptionrx.jpg')}}"
             />
           </div>
         </div>

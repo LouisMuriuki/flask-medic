@@ -15,30 +15,34 @@ block navbar %}
         Log Out
       </a>
       <img
-        src="{{url_for('static', filename='images/goggle-icon.jpg')}}"
-        alt="Google Icon"
-        class="mr-2 rounded-full"
+        src="{{profile_pic}}"
+        alt="profilepic"
+        class="rounded-full"
         width="20"
         height="20"
       />
-       <p class="text-white">Louis Muriuki</p>
+      <p class="text-white">{{name}}</p>
     </div>
   </div>
 </div>
 
 {% endblock %} {% block content %}
 <body class="font-sans bg-gray-100 p-8">
-  <div class="container mx-auto">
-    <h1 class="text-3xl text-center font-bold mb-8">Medicine Information</h1>
-    <h1 class="text-3xl text-center font-bold mb-8">username</h1>
+  <div class="container mx-auto w-full">
+    <h1 class="text-3xl text-center font-bold mb-8">
+      welcome <span class="text-blue-500">{{name}}</span>
+    </h1>
+    <h1 class="text-xl text-center font-bold mb-8">Medicine Information</h1>
 
-    <!-- Add New Button -->
-    <button
-      class="flex flex-end bg-green-500 text-white px-4 py-2 mb-4 hover:bg-green-600"
-    >
-      <a href="{{ url_for('addPrescription') }}" class="text-white">Add New</a>
-    </button>
-
+    <div class="flex flex-row-reverse w-full">
+      <a href="{{ url_for('addPrescription') }}" class="text-white">
+        <button
+          class="bg-green-500 text-white mb-3 rounded-lg p-3 hover:bg-green-600"
+        >
+          Add New
+        </button></a
+      >
+    </div>
     <!-- Medicine Table -->
     <table class="table-auto w-full">
       <thead>
@@ -50,22 +54,42 @@ block navbar %}
           <th class="px-4 py-2">Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="">
         {% for prescription in prescriptions %}
         <tr>
           <td class="border px-4 py-2">{{ prescription.medicine_name }}</td>
           <td class="border px-4 py-2">{{ prescription.instructions }}</td>
           <td class="border px-4 py-2">{{ prescription.dosage }}</td>
           <td class="border px-4 py-2">{{ prescription.doctor }}</td>
-          <td class="border px-4 py-2">
-            <button
-              class="bg-blue-500 text-white px-2 py-1 mr-2 hover:bg-blue-600"
+          <td class="border px-4 py-2 flex items-center justify-center gap-2">
+            <form 
+              method="POST"
+              action="{{ url_for('updatePrescription', prescription_id=prescription.id) }}"
             >
-              Edit
-            </button>
-            <button class="bg-red-500 text-white px-2 py-1 hover:bg-red-600">
-              Clear
-            </button>
+              <input
+                type="hidden"
+                name="prescription_id"
+                value="{{ prescription.id }}"
+              />
+              <button
+                type="submit"
+                name="updatePrescription"
+                class="rounded-lg bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+              >
+                Edit
+              </button>
+            </form>
+            <form
+              method="POST"
+              action="{{ url_for('delete_prescription', prescription_id=prescription.id) }}"
+            >
+              <button
+                type="submit"
+                class="rounded-lg bg-red-500 text-white px-2 py-1 hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </form>
           </td>
         </tr>
         {% endfor %}

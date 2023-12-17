@@ -1,5 +1,4 @@
-{% extends "index.html" %} {% block title %} Prescription {% endblock %} 
-{%
+{% extends "index.html" %} {% block title %} Prescription {% endblock %} {%
 block navbar %}
 
 <div class="bg-gray-800 w-full">
@@ -16,31 +15,26 @@ block navbar %}
         Log Out
       </a>
       <img
-        src="{{url_for('static', filename='images/goggle-icon.jpg')}}"
-        alt="Google Icon"
-        class="mr-2 rounded-full"
+        src="{{profile_pic}}"
+        alt="profilepic"
+        class="rounded-full"
         width="20"
         height="20"
       />
-       <p class="text-white">Louis Muriuki</p>
+      <p class="text-white">{{name}}</p>
     </div>
   </div>
 </div>
 
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <body class="font-sans bg-gray-100 p-8">
   <div class="container mx-auto">
     <h1 class="text-center text-3xl font-bold mb-8">Add New Medicine</h1>
 
-    <!-- Medicine Form -->
     <form
       method="POST"
-      action="{{ url_for('addPrescription') }}"
       class="max-w-4xl mx-auto bg-white p-8 rounded shadow-md"
     >
-      <!-- Medicine Name -->
       <div class="mb-4">
         <label
           for="medicineName"
@@ -48,6 +42,7 @@ block navbar %}
           >Medicine Name</label
         >
         <input
+          required
           type="text"
           id="medicineName"
           name="medicineName"
@@ -55,7 +50,6 @@ block navbar %}
         />
       </div>
 
-      <!-- Instructions -->
       <div class="mb-4">
         <label
           for="instructions"
@@ -63,6 +57,7 @@ block navbar %}
           >Instructions</label
         >
         <textarea
+          required
           id="instructions"
           name="instructions"
           rows="3"
@@ -70,12 +65,12 @@ block navbar %}
         ></textarea>
       </div>
 
-      <!-- Dosage -->
       <div class="mb-4">
         <label for="dosage" class="text-sm font-medium text-gray-700 block"
           >Dosage</label
         >
         <input
+          required
           type="text"
           id="dosage"
           name="dosage"
@@ -83,32 +78,29 @@ block navbar %}
         />
       </div>
 
-      <!-- Doctor Dropdown -->
       <div class="mb-4">
-        <label for="doctor" class="text-sm font-medium text-gray-700 block"
+        <label for="dosage" class="text-sm font-medium text-gray-700 block"
           >Doctor</label
         >
-        <select
+        <input
+          required
+          type="text"
           id="doctor"
           name="doctor"
           class="mt-1 p-2 w-full border rounded-md"
-        >
-          <option value="dr-smith">Dr. Smith</option>
-          <option value="dr-jones">Dr. Jones</option>
-          <option value="dr-doe">Dr. Doe</option>
-          <!-- Add more dummy data as needed -->
-        </select>
+        />
       </div>
 
-      <!-- Submit Button -->
+      {% block addbutton %}
       <div class="flex items-center justify-between">
         <button
           type="submit"
           class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
-          Add Medicine
+          Add Prescription
         </button>
       </div>
+      {% endblock %}
     </form>
   </div>
 </body>

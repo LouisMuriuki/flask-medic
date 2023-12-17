@@ -8,7 +8,9 @@
 
 
 # production
-/build
+/app/DigiCertGlobalRootCA.crt.pem
+/app/client_secret.json
+
 
 # misc
 .DS_Store
