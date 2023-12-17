@@ -54,7 +54,7 @@ ssl_ca = os.path.join(pathlib.Path(__file__).parent,"DigiCertGlobalRootCA.crt.pe
 try:
     db_uri = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}?ssl_ca={ssl_ca}"
     app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+    # app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
     app.permanent_session_lifetime=timedelta(minutes=5)
     db.init_app(app)
     with app.app_context():
