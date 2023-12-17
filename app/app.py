@@ -3,7 +3,7 @@ from functools import wraps
 import os
 import pathlib
 import requests
-from flask import Flask, abort, flash, redirect, session,request,render_template, url_for
+from flask import Flask, abort, flash, redirect, session,request,render_template
 from google_auth_oauthlib.flow import Flow
 from google.oauth2 import id_token
 from pip._vendor import cachecontrol
@@ -12,11 +12,15 @@ from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 import logging
+
+
+
 logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
 load_dotenv()
 db = SQLAlchemy()
+
 class Prescription(db.Model):
     __tablename__ = 'prescription' 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -179,6 +183,19 @@ def renderPresciption():
     else:
         flash("You are not logged in!",category="error")
         return redirect("/")
+    
+@app.route("/aboutus",methods=['GET','POST'])
+def renderAboutus():
+    return render_template("about.html")
+       
+    
+@app.route("/services",methods=['GET','POST'])
+def renderServices():
+    return render_template("services.html")
+    
+@app.route("/contactUs",methods=['GET','POST'])
+def renderContactUs():
+    return render_template("contactUs.html")
     
    
 
