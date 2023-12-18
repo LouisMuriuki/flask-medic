@@ -6,6 +6,34 @@ This is a full-stack medication tracker application built with Python (Flask) fo
 
 The Medication Tracker provides users with real-time visibility into their prescription progress and allows them to track details about the prescribing doctoras well
 
+### Technologies Utilized
+## This project leverages a variety of tools and services, including:
+
+1. GitHub: Employed for version control of the project scripts.
+2. Environment Variables (.env): Used to store credentials for Google OAuth and database connection strings, particularly for MySQL connection.
+3. Flask: Chosen as the backend framework to develop the web-service project, enabling the creation of a Flask app.
+4. Tailwind: Employed as the frontend framework to design the web-service interface.
+5. Azure Database for MySQL flexible server: Selected as the project's database to integrate data seamlessly into the Flask app.
+6. SQLAlchemy: Utilized as the Object-Relational Mapping (ORM) tool within the Flask app, facilitating the establishment of a connection with the MySQL database and enabling data querying.
+7. Google OAuth: Integrated as the authorization service in the project to implement straightforward user authorization within the Flask app.
+8. Docker: Incorporated into the project to containerize the Flask app, streamlining deployment and ensuring consistency across different environments.
+9. Cloud Deployment with Azure: Utilized Microsoft Azure's App Services to deploy the Flask app to the cloud, providing an alternative method for deploying the web application.
+
+
+### Environment Variables (.env) Configuration
+
+In this project, environment variables played a crucial role in storing credentials for both Google OAuth and MySQL database connections. The .env file structure in the repository adhered to the following template:
+
+GOOGLE_CLIENT_ID = <client-id>
+GOOGLE_CLIENT_SECRET = <client-secret>
+DB_HOST = <azure-host-link>
+DB_DATABASE = <database-name>
+DB_USERNAME = <username>
+DB_PASSWORD = <password>
+DB_PORT = 3306
+
+This organized structure allowed for easy management and secure storage of sensitive information, facilitating seamless integration with the MySQL database and enabling secure communication with Google OAuth services within the project.
+
 ## How to Run
 
 ### 1. Clone the Repository
@@ -37,4 +65,23 @@ Clone the repository to your local machine:
 
 ### 4.setup the Environmental variables
 ### 5.run "env\scripts\activate" to activate your environmental variables
+
 ### 6.run "python app/app.py" to start the project.
+
+
+
+### Deploying using Docker
+
+1. Ensure Docker and Docker Compose are installed on your machine.
+
+2. Create an .env file in the same directory as your docker-compose.yml file. Populate it with the required environment variables, including DB_USERNAME, DB_PASSWORD, DOCKER_DB_HOST, DB_NAME, etc.
+
+3. Place the DigiCertGlobalRootCA.crt.pem file in the ./app directory.
+
+4. Open a terminal, navigate to the directory containing your docker-compose.yml file.
+
+5. Run the following command to build and start the services
+
+``docker-compose up --build``
+
+6. Access your Flask application at http://localhost:5000. The application should be connected to the MySQL database.

@@ -11,8 +11,8 @@ services:
     environment:
       db_uri: "mysql+pymysql://${DB_USERNAME}:${DB_PASSWORD}@${DOCKER_DB_HOST}/${DB_NAME}?ssl_ca=/etc/mysql-ssl/ca-cert.pem"
     volumes:
-      - ./app:/app  # Assuming your Python file is in the ./app directory
-      - ./app/DigiCertGlobalRootCA.crt.pem:/etc/mysql-ssl/ca-cert.pem  # Mount the pem file
+      - ./app:/app  
+      - ./app/DigiCertGlobalRootCA.crt.pem:/etc/mysql-ssl/ca-cert.pem 
 
   mysql-db:
     image: mysql:8.0 
@@ -25,5 +25,5 @@ services:
       MYSQL_DATABASE: "medication_tracker"
       MYSQL_PORT: 3306
     volumes:
-      - ./app:/app  #
+      - ./app:/app  
       - ./app/DigiCertGlobalRootCA.crt.pem:/etc/mysql-ssl/ca-cert.pem

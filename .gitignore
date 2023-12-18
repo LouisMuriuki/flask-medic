@@ -2,8 +2,8 @@
 /node_modules
 
 # secret files
-/app/DigiCertGlobalRootCA.crt.pem
-/app/client_secret.json
+# /app/DigiCertGlobalRootCA.crt.pem
+# /app/client_secret.json
 
 #env file
 .env
